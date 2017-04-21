@@ -1,0 +1,27 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: instance
+Resources:
+  # インスタンス
+  Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      AvailabilityZone: us-east-2a
+      ImageId: ami-c55673a0
+      InstanceType: t2.nano
+      KeyName: xxx
+      SecurityGroups:
+      - default
+      - !Ref InstanceSecurityGroup
+
+  # セキュリティーグループ
+  InstanceSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: ssh
+      SecurityGroupIngress:
+        -
+          IpProtocol: "tcp"
+          FromPort: "22"
+          ToPort: "22"
+          CidrIp: "xxxx"
