@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: instance
+Description: serposcope_instance
 Resources:
   # インスタンス
   Instance:
@@ -18,10 +18,22 @@ Resources:
   InstanceSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
-      GroupDescription: ssh
+      GroupDescription: serposcope_security
       SecurityGroupIngress:
         -
           IpProtocol: "tcp"
           FromPort: "22"
           ToPort: "22"
           CidrIp: "xxxx"
+        -
+          IpProtocol: "tcp"
+          FromPort: "7134"
+          ToPort: "7134"
+          CidrIp: "0.0.0.0/0"
+
+  # 固定IP
+  EIP:
+    Type: "AWS::EC2::EIP"
+    Properties:
+      InstanceId:
+        Ref : Instance
