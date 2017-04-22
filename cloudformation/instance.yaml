@@ -30,6 +30,11 @@ Resources:
           FromPort: "7134"
           ToPort: "7134"
           CidrIp: "0.0.0.0/0"
+        -
+          IpProtocol: "tcp"
+          FromPort: "80"
+          ToPort: "80"
+          CidrIp: "xxx"
 
   # 固定IP
   EIP:
